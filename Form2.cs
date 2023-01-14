@@ -27,6 +27,7 @@ namespace graphics_animation
         {
             InitializeComponent();
             bitmap  = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            mode = DrawMode.CIRCLE;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -67,7 +68,24 @@ namespace graphics_animation
                 {
                     drawCirlce(e.X, e.Y);
                 }
+                if(mode == DrawMode.LINE)
+                {
+                    drawLine(e.X, e.Y);
+                }
             }
+        }
+
+        private void drawLine(int x, int y)
+        {
+            Graphics.myLine(startX, startY,x, y,
+                   draft,
+                   pictureBox1,
+                   Color.Red);
+        }
+
+        private void drawLine(object sender, EventArgs e)
+        {
+            mode = DrawMode.LINE;
         }
 
         private void drawElipse(int endX, int endY)
@@ -87,9 +105,6 @@ namespace graphics_animation
                    draft,
                    pictureBox1,
                    Color.Red);
-            
-               
-
         }
         private void drawCirlce(int endX, int endY)
         {
@@ -104,13 +119,10 @@ namespace graphics_animation
             Graphics.drawCircle(
                    Math.Abs(startX + midDx),
                    Math.Abs(startY + midDy),
-                   (int) radius,
+                   (int)radius,
                    draft,
                    pictureBox1,
                    Color.Red);
-
-
-
         }
     }
 }
